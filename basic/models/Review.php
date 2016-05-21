@@ -58,13 +58,4 @@ class Review extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Doctor::className(), ['idDoctor' => 'idDoctor']);
     }
-
-    /**
-     * @inheritdoc
-     * @return ReviewQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new ReviewQuery(get_called_class());
-    }
 }

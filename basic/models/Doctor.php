@@ -19,7 +19,7 @@ use Yii;
  * @property Booking[] $bookings
  * @property Address $idAddress0
  * @property Specialization $idSpecialization0
- * @property Reviews[] $reviews
+ * @property Review[] $reviews
  */
 class Doctor extends \yii\db\ActiveRecord
 {
@@ -52,14 +52,14 @@ class Doctor extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'idDoctor' => 'the default id in which the doctor is listed ',
-            'name' => 'the name of the doctor',
-            'surname' => 'the surname of the doctor ',
-            'idSpecialization' => 'The current specialization of the doctor *** what if there are more than one?? ',
+            'idDoctor' => 'Id Doctor',
+            'name' => 'Name',
+            'surname' => 'Surname',
+            'idSpecialization' => 'Id Specialization',
             'idAddress' => 'Id Address',
-            'emailAddress' => 'the registered email address used to login perhaps to the website',
-            'photo' => 'upload photo option',
-            'cnas' => 'if the doctor is currently working with cnas',
+            'emailAddress' => 'Email Address',
+            'photo' => 'Photo',
+            'cnas' => 'Cnas',
         ];
     }
 
@@ -92,15 +92,6 @@ class Doctor extends \yii\db\ActiveRecord
      */
     public function getReviews()
     {
-        return $this->hasMany(Reviews::className(), ['idDoctor' => 'idDoctor']);
-    }
-
-    /**
-     * @inheritdoc
-     * @return DoctorQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new DoctorQuery(get_called_class());
+        return $this->hasMany(Review::className(), ['idDoctor' => 'idDoctor']);
     }
 }
