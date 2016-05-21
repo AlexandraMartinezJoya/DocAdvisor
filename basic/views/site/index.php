@@ -4,25 +4,30 @@
 
 use yii\bootstrap\Dropdown;
 use yii\jui\AutoComplete;
+use app\models\City;
 
 $this->title = 'DocAdvisor';
 ?>
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1>Congratulations!</h1>
+<!--         <h1>Congratulations!</h1> -->
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
+<!--         <p class="lead">You have successfully created your Yii-powered application.</p> -->
 
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+<!--         <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p> -->
         
         <?php
+        $cities = City::find()->all();
+        
         echo AutoComplete::widget([
-        		//'model' => $model,
-        		'attribute' => 'country',
+        		'model' => new City(),
+        		'attribute' => 'name',
         		'clientOptions' => [
-        				'source' => ['USA', 'RUS'],
-        		],
+        				'source' => $cities,
+        				'autoFill'=>true,
+        				'minLength'=>'2'
+        		]
         ]);
         ?>
     </div>

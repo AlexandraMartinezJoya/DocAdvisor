@@ -2,11 +2,22 @@
 
 namespace app\controllers;
 
-class AddressController extends \yii\web\Controller
+use yii\data\ActiveDataProvider;
+use app\models\Address;
+use yii\web\Controller;
+use yii\web\NotFoundHttpException;
+use yii\filters\VerbFilter;
+
+class AddressController extends Controller
 {
     public function actionIndex()
     {
-        return $this->render('index');
+    	$dataProvider = new ActiveDataProvider([
+    			'query' => Address::find(),
+    	]);
+        return $this->render('index', [
+        		'dataProvider' => $dataProvider,
+        ]);
     }
 
 }
