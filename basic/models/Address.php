@@ -11,7 +11,9 @@ use Yii;
  * @property string $streetName
  * @property string $streetNumber
  * @property string $locationPhoto
+ * @property integer $fk_city
  *
+ * @property City $fkCity
  * @property Doctor[] $doctors
  */
 class Address extends \yii\db\ActiveRecord
@@ -32,7 +34,9 @@ class Address extends \yii\db\ActiveRecord
         return [
             [['streetName', 'streetNumber'], 'required'],
             [['locationPhoto'], 'string'],
+            [['fk_city'], 'integer'],
             [['streetName', 'streetNumber'], 'string', 'max' => 45],
+            [['fk_city'], 'exist', 'skipOnError' => true, 'targetClass' => City::className(), 'targetAttribute' => ['fk_city' => 'id_city']],
         ];
     }
 
@@ -46,7 +50,16 @@ class Address extends \yii\db\ActiveRecord
             'streetName' => 'Street Name',
             'streetNumber' => 'Street Number',
             'locationPhoto' => 'Location Photo',
+            'fk_city' => 'Fk City',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFkCity()
+    {
+        return $this->hasOne(City::className(), ['id_city' => 'fk_city']);
     }
 
     /**
