@@ -14,22 +14,55 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Doctor', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Add Doctor', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'idDoctor',
             'name',
             'surname',
-            'idSpecialization',
-            'idAddress',
-            // 'emailAddress:email',
-            // 'photo',
-            // 'cnas',
+        	[
+        		'label' => 'Address',
+        		'content' => function ($data) {
+        		
+        		$streetName = $data->getIdAddress0()->one()->streetName;
+        		$streetNumber = $data->getIdAddress0()->one()->streetNumber;
+        		
+        		return $streetName .' '. $streetNumber;
+        		}
+        	],
+            'emailAddress:email',
+			[
+                'label' => 'Specialization',
+                'content' => function ($data) {
 
+                    $specialization = $data->getIdSpecialization0()->one()->specName;
+
+                    return $specialization;
+                }
+            ],
+            [
+            	'attribute' => 'Photo',
+            	'format' => 'raw',
+            	'value' => function($data) { 
+            		return Html::img(
+            				'data:image/jpeg;base64,' . base64_encode($data->photo), 
+            				['width'=>'100px']
+            		); 
+            	}
+            ],
+            //'photo',
+            [
+                'label' => 'Works with assirance',
+                'content' => function ($data) {
+                
+                $isAssured = $data->cnas ? 'Yes' : 'No';
+                
+                return $isAssured;
+                },
+                //'format' => 'label'
+            ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

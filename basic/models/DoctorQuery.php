@@ -68,7 +68,10 @@ class DoctorQuery extends Doctor
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'surname', $this->surname])
             ->andFilterWhere(['like', 'emailAddress', $this->emailAddress])
-            ->andFilterWhere(['like', 'photo', $this->photo]);
+            ->andFilterWhere(['like', 'photo', $this->photo])
+            ->andFilterWhere(['like', 'specialization.specName', $this->getIdSpecialization0()]);
+        
+        //$query->joinWith(['specialization(idSpecialization)']);
 
         return $dataProvider;
     }
