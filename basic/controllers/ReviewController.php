@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Review;
-use app\models\ReviewQuery;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -35,11 +35,11 @@ class ReviewController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new ReviewQuery();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = new ActiveDataProvider([
+            'query' => Review::find(),
+        ]);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }

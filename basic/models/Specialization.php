@@ -41,7 +41,7 @@ class Specialization extends \yii\db\ActiveRecord
     {
         return [
             'idSpecialization' => 'Id Specialization',
-            'specName' => 'the name of the specialization',
+            'specName' => 'Spec Name',
         ];
     }
 
@@ -59,14 +59,5 @@ class Specialization extends \yii\db\ActiveRecord
     public function getDoctors()
     {
         return $this->hasMany(Doctor::className(), ['idSpecialization' => 'idSpecialization']);
-    }
-
-    /**
-     * @inheritdoc
-     * @return SpecializationQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new SpecializationQuery(get_called_class());
     }
 }

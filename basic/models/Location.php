@@ -44,16 +44,7 @@ class Location extends \yii\db\ActiveRecord
             'locationID' => 'Location ID',
             'zipCode' => 'Zip Code',
             'locationName' => 'Location Name',
-            'locationCoordinates' => 'possibly to ip track, but for that we would need to get the ip location at every user login doctor or otherwise.',
+            'locationCoordinates' => 'Location Coordinates',
         ];
-    }
-
-    /**
-     * @inheritdoc
-     * @return LocationQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new LocationQuery(get_called_class());
     }
 }

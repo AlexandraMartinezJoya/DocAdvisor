@@ -58,7 +58,7 @@ class Booking extends \yii\db\ActiveRecord
             'fkSpecialization' => 'Fk Specialization',
             'desiredDate' => 'Desired Date',
             'confirmIdBooking' => 'Confirm Id Booking',
-            'emergencyLevel' => 'scale from 1 to 10',
+            'emergencyLevel' => 'Emergency Level',
             'bookingRemainder' => 'Booking Remainder',
         ];
     }
@@ -85,14 +85,5 @@ class Booking extends \yii\db\ActiveRecord
     public function getFkUser0()
     {
         return $this->hasOne(User::className(), ['idUser' => 'fkUser']);
-    }
-
-    /**
-     * @inheritdoc
-     * @return BookingQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new BookingQuery(get_called_class());
     }
 }

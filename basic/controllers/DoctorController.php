@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Doctor;
-use app\models\DoctorQuery;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -35,11 +35,11 @@ class DoctorController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new DoctorQuery();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = new ActiveDataProvider([
+            'query' => Doctor::find(),
+        ]);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }

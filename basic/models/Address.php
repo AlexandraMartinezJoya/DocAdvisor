@@ -56,13 +56,4 @@ class Address extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Doctor::className(), ['idAddress' => 'idAddress']);
     }
-
-    /**
-     * @inheritdoc
-     * @return AddressQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new AddressQuery(get_called_class());
-    }
 }
