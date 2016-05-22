@@ -21,51 +21,22 @@ $this->title = 'DocAdvisor';
 <!--         <p class="lead">You have successfully created your Yii-powered application.</p> -->
 
 <!--         <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p> -->
-        
-        <?php
-        //$cities = City::find()->all()->select(['name']);
-        
-        //This is the part of the code which needs to be implemented with the main dropdown pannel
-        
-//         echo AutoComplete::widget([
-//         		'model' => City::className(),
-//         		'attribute' => 'name',
-//         		'clientOptions' => [
-//         				'source' => ArrayHelper::map(City::find()->all(), 'id_city', 'name'),
-//         				'autoFill'=>true,
-//         				'minLength'=>'2'
-//         		]
-//         ]);
-        
-// echo '<label class="control-label">Provinces</label>';
-// echo Select2::widget([
-//     'name' => 'state_10',
-//     'data' => ArrayHelper::map(City::find()->all(), 'id_city', 'name'),
-//     'options' => [
-//         'placeholder' => 'Select provinces ...',
-//         'multiple' => true
-//     ],
-// ]);
-
-        echo $form->field($model, 'city')->widget(Select2::classname(), [
-        		'initValueText' => $cityDesc, // set the initial display text
-        		'options' => ['placeholder' => 'Search for a city ...'],
-        		'pluginOptions' => [
-        				'allowClear' => true,
-        				'minimumInputLength' => 3,
-        				'language' => [
-        						'errorLoading' => new JsExpression("function () { return 'Waiting for results...'; }"),
-        				],
-        				'ajax' => [
-        						'url' => $url,
-        						'dataType' => 'json',
-        						'data' => new JsExpression('function(params) { return {q:params.term}; }')
-        				],
-        				'escapeMarkup' => new JsExpression('function (markup) { return markup; }'),
-        				'templateResult' => new JsExpression('function(city) { return city.text; }'),
-        				'templateSelection' => new JsExpression('function (city) { return city.text; }'),
-        		],
-        ]);
+        <table width="100%">
+        	<tr>
+        		<td width="40%">
+        			<?php
+        			echo Select2::widget([
+        					'name' => 'state_10',
+        					'data' => ArrayHelper::map(City::find()->all(), 'id_city', 'name'),
+        					'options' => [
+        							'placeholder' => 'Select locations ...',
+        							'multiple' => false
+        					],
+        			]);
+        			?>
+        		</td>
+        		<td width="40%">
+        		        <?php
 
         // Display the doctor list.
         echo Select2::widget([
@@ -77,6 +48,9 @@ $this->title = 'DocAdvisor';
             ],
         ]);
         ?>
+        		</td>
+        	</tr>
+        </table>
     </div>
 
     <div class="body-content">
