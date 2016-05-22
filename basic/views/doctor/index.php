@@ -52,7 +52,6 @@ $this->params['breadcrumbs'][] = $this->title;
             		); 
             	}
             ],
-            //'photo',
             [
                 'label' => 'Works with assirance',
                 'content' => function ($data) {
@@ -61,9 +60,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 
                 return $isAssured;
                 },
-                //'format' => 'label'
             ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-</div>
+

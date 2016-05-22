@@ -10,8 +10,16 @@ use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
 AppAsset::register($this);
+
 ?>
+
+
 <?php $this->beginPage() ?>
+
+<?php
+$profpic = "C:\Users\wwww\Desktop\in-store-wellness-hospital.jpg";
+?>
+		
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
@@ -22,17 +30,21 @@ AppAsset::register($this);
     <?php $this->head() ?>
 </head>
 <body>
-<?php $this->beginBody() ?>
-
-<div class="wrap">
+	
+	background-image: url('<?php echo $profpic;?>');
+	<?php $this->beginBody() ?>
+	
+	<div class="wrap">
     <?php
-    NavBar::begin([
+   	 NavBar::begin([
         'brandLabel' => 'DocAdvisor',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
+    
+    
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [

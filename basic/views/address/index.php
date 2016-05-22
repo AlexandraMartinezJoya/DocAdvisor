@@ -13,15 +13,17 @@ $this->params['breadcrumbs'][] = $this->title;
 
 	 <h1><?= Html::encode($this->title) ?></h1>
 	  <p>
-        <?= Html::a('Create Hospital', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Add Hospital', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?php GridView::widget([
     		'dataProvider' => $dataProvider, 
     		'columns' => [
     			['class' => 'yii\grid\SerialColumn'],
     			'streetName',
-    			'streetNumber'
-    ]
+    			'streetNumber',
+//    			'zipCode',
+//    			'locationCoordonates'
+    		]
     ])
     ?>
 </div>

@@ -9,8 +9,7 @@ use Yii;
  *
  * @property integer $idReview
  * @property integer $idDoctor
- * @property integer $votesPositive
- * @property integer $votesNegative
+ * @property integer $votes
  * @property integer $maxVotesPerIdDoctor
  *
  * @property Doctor $idDoctor0
@@ -32,7 +31,7 @@ class Review extends \yii\db\ActiveRecord
     {
         return [
             [['idDoctor'], 'required'],
-            [['idDoctor', 'votesPositive', 'votesNegative', 'maxVotesPerIdDoctor'], 'integer'],
+            [['idDoctor', 'votes', 'maxVotesPerIdDoctor'], 'integer'],
             [['idDoctor'], 'exist', 'skipOnError' => true, 'targetClass' => Doctor::className(), 'targetAttribute' => ['idDoctor' => 'idDoctor']],
         ];
     }
@@ -45,8 +44,7 @@ class Review extends \yii\db\ActiveRecord
         return [
             'idReview' => 'Id Review',
             'idDoctor' => 'Id Doctor',
-            'votesPositive' => 'Votes Positive',
-            'votesNegative' => 'Votes Negative',
+            'votes' => 'Votes',
             'maxVotesPerIdDoctor' => 'Max Votes Per Id Doctor',
         ];
     }

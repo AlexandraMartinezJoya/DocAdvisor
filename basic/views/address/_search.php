@@ -22,6 +22,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'streetNumber') ?>
 
     <?= $form->field($model, 'locationPhoto') ?>
+    
+    <?= $form -> field($model, 'zipCode') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

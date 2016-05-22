@@ -105,6 +105,11 @@ class DoctorController extends Controller
 
         return $this->redirect(['index']);
     }
+    
+    public function actionSetRating()
+    {
+    	echo $rating;
+    }
 
     /**
      * Finds the Doctor model based on its primary key value.

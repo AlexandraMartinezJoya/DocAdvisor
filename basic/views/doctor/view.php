@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use kartik\rating\StarRating;
+use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Doctor */
@@ -28,15 +30,61 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'idDoctor',
             'name',
             'surname',
-            'idSpecialization',
-            'idAddress',
+			[
+                'attribute' => 'Specialization',
+                'value' => $model->getIdSpecialization0()->one()->specName
+            ],
+            [
+        		'attribute' => 'Address',
+        		'value' => $model->getIdAddress0()->one()->streetName .' '.
+        		$streetNumber = $model->getIdAddress0()->one()->streetNumber
+        	],
             'emailAddress:email',
-            'photo',
-            'cnas',
+        	[
+        		'attribute' => 'Photo',
+        		'format' => 'raw',
+        		'value' => Html::img(
+            				'data:image/jpeg;base64,' . base64_encode($model->photo), 
+            				['width'=>'100px'])
+        	],
+            [
+                'attribute' => 'Works with assirance',
+                'value' => $model->cnas ? 'Yes' : 'No'
+            ],
+        	'phone',
+        	[
+        		'attribute' => 'Reviews',
+        		'format' => 'raw',
+        		'value' => StarRating::widget([
+    							'name' => 'rating_33',
+    							'value' => $model->getReviews()->one()->votes,
+    							'disabled' => true
+						   ])
+        	],
         ],
-    ]) ?>
+    ]);
+    
+    echo '<p class="lead">Please rate this doctor.</p>';
+	$form = ActiveForm::begin([
+	    'id' => 'login-form',
+	    'options' => ['class' => 'form-horizontal'],
+		'action' => ['doctor/view'],
+		'options' => ['method' => 'post'],
+	]);
+	echo $form->field($model->getReviews()->one(), 'votes')->widget(StarRating::classname(), [
+	    'pluginOptions' => [
+	    		'size'=>'sm'
+	    ]
+	]);?>
+	
+	<div class="form-group">
+	<div class="col-lg-offset-1 col-lg-11">
+	<?= Html::submitButton('Vote', ['class' => 'btn btn-primary']) ?>
+	        </div>
+	    </div>
+	
+	<?php ActiveForm::end(); ?>
 
 </div>

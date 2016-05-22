@@ -15,6 +15,7 @@ use Yii;
  * @property string $emailAddress
  * @property resource $photo
  * @property integer $cnas
+ * @property string $phone
  *
  * @property Booking[] $bookings
  * @property Address $idAddress0
@@ -41,6 +42,7 @@ class Doctor extends \yii\db\ActiveRecord
             [['idSpecialization', 'idAddress', 'cnas'], 'integer'],
             [['photo'], 'string'],
             [['name', 'surname', 'emailAddress'], 'string', 'max' => 45],
+            [['phone'], 'string', 'max' => 15],
             [['idAddress'], 'exist', 'skipOnError' => true, 'targetClass' => Address::className(), 'targetAttribute' => ['idAddress' => 'idAddress']],
             [['idSpecialization'], 'exist', 'skipOnError' => true, 'targetClass' => Specialization::className(), 'targetAttribute' => ['idSpecialization' => 'idSpecialization']],
         ];
@@ -60,6 +62,7 @@ class Doctor extends \yii\db\ActiveRecord
             'emailAddress' => 'Email Address',
             'photo' => 'Photo',
             'cnas' => 'Cnas',
+            'phone' => 'Phone',
         ];
     }
 
