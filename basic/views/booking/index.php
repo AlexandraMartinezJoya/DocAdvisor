@@ -16,7 +16,6 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 </div>
 
-<h1>List of active bookings </h1>
-
+<h1>List of active bookings !!! UNDER CONSTRUCTION !!!</h1>
 <p>
 </p>
