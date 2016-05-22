@@ -1,9 +1,22 @@
 <?php
+use yii\helpers\Html;
+use yii\grid\GridView;
+use yii\base\Widget;
 /* @var $this yii\web\View */
+
+$this->title = 'Bookings';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<h1>booking/index</h1>
+
+<div class = "bookings-index">
+
+	 <h1><?= Html::encode($this->title) ?></h1>
+	  <p>
+        <?= Html::a('Add Booking', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
+</div>
+
+<h1>List of active bookings </h1>
 
 <p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
 </p>

@@ -51,8 +51,9 @@ $profpic = "C:\Users\wwww\Desktop\in-store-wellness-hospital.jpg";
             ['label' => 'Home', 'url' => ['/site/index']],
         	['label' => 'Hospital', 'url' => ['/address/index']],
         	['label' => 'Doctors', 'url' => ['/doctor/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
+        	['label' => 'Bookings', 'url' => ['/booking/index']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
+        	['label' => 'About', 'url' => ['/site/about']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (

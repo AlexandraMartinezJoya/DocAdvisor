@@ -15,21 +15,24 @@ $this->params['breadcrumbs'][] = $this->title;
 	  <p>
         <?= Html::a('Add Hospital', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-    <?php GridView::widget([
-    		'dataProvider' => $dataProvider, 
-    		'columns' => [
-    			['class' => 'yii\grid\SerialColumn'],
-    			'streetName',
-    			'streetNumber',
-//    			'zipCode',
-//    			'locationCoordonates'
-    		]
-    ])
-    ?>
 </div>
-<h1>address/index</h1>
+<h1>List of addresses</h1>
 
 <p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+            'streetName',
+            'streetNumber',
+        	[
+        		'label' => 'City',
+        		'content' => function ($data) {
+        		$cityName = $data->getFkCity()->one()->name;
+        		return $cityName;
+        		},
+        	],
+            ['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]); ?>
 </p>
